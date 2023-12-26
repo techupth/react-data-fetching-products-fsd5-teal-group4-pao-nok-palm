@@ -23,8 +23,11 @@ function App() {
 
   const handleDelete = async (id) => {
     await axios.delete(`http://localhost:4001/products/${id}`);
-    const result = await axios.get("http://localhost:4001/products");
-    setProducts([...result.data.data]);
+    const newProduct = [...products];
+    newProduct.filter((products) => {
+      products.id !== id;
+    });
+    setProducts(newProduct);
   };
 
   return (
